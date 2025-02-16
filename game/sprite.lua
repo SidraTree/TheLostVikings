@@ -15,8 +15,10 @@ facing = {
 	west = {}
 	}
 
-function createSprite (aImage, aX, aY, aSpeed, aRotation)
-	
+function createSprite (aImage, aX, aY, aSpeed)
+	if aX == nil then aX = 0 end
+	if aY == nil then aY = 0 end
+	if aSpeed == nil then aSpeed = 0 end
 	return {image = love.graphics.newImage(aImage), x = aX, y = aY, speed = aSpeed}
 end
 
