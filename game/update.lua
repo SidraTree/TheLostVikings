@@ -42,28 +42,21 @@ function processInput (dt)
     end
 
     --Shoot Button
-    if love.keyboard.isDown("space") then
-        player.fireTimer = player.fireTimer + dt
-        if player.fireTimer > player.rof then
-            player.fireTimer = player.fireTimer - player.rof
-            playerLaserSound:play()
-            bullet = {x = (player.x + 65), y = (player.y - 5), size = 10, speed = 450}
-            table.insert(bulletQueue,bullet)
-        end
-    end
-	
-	if joystick then
-		if  joystick:isGamepadDown("a") then
-			player.fireTimer = player.fireTimer + dt
-			if player.fireTimer > player.rof then
-				player.fireTimer = player.fireTimer - player.rof
-				playerLaserSound:play()
-				bullet = {x = (player.x + 65), y = (player.y - 5), size = 10, speed = 450}
-				table.insert(bulletQueue,bullet)
-			end
-		end
+    if love.keyboard.isDown("space") then shoot(dt)
+	elseif joystick then
+		if joystick:isGamepadDown("a") then shoot(dt) end 
 	end
 	
+end
+
+function shoot (dt)
+	player.fireTimer = player.fireTimer + dt
+	if player.fireTimer > player.rof then
+		player.fireTimer = player.fireTimer - player.rof
+		playerLaserSound:play()
+		bullet = {x = (player.x + 65), y = (player.y - 5), size = 10, speed = 450}
+		table.insert(bulletQueue,bullet)
+	end
 end
 
 function spawnEnemy(type, x, y)
