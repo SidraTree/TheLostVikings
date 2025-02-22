@@ -70,7 +70,7 @@ function spawnEnemy(type, x, y)
 
     --mutalisk
     if type == 1 then 
-        enemy.sprite = love.graphics.newImage("game/data/mutalisk.png")
+        enemy.sprite = love.graphics.newImage("game/png/mutalisk.png")
         enemy.width = 50
         enemy.height = 50
         enemy.speed = 250
@@ -80,7 +80,7 @@ function spawnEnemy(type, x, y)
         enemy.rof = 1
     --overlord
     elseif type == 2 then 
-        enemy.sprite = love.graphics.newImage("game/data/overlord.png")
+        enemy.sprite = love.graphics.newImage("game/png/overlord.png")
         enemy.width = 58
         enemy.height = 78
         enemy.speed = 300
@@ -183,7 +183,7 @@ function processEnemyBullets(dt)
                         player.lives = player.lives - 1
                         playerHitSound:play()
                         if player.lives >= 0 then 
-                            hbar = love.graphics.newImage("game/data/hbar" .. player.lives ..".png") 
+                            hbar = love.graphics.newImage("game/png/hbar" .. player.lives ..".png") 
                         end
                         player.dmgOffsetX = v.x - player.x - 50
                         player.dmgOffsetY = v.y - player.y - 30
@@ -200,7 +200,7 @@ function checkPlayerHealth (dt)
 	if (player.lives < 0) or (threatLevel >= 100) then
 		if score > highScore then
 			highScore = score
-			score_file = io.open("game/data/hs.dat", "w")
+			score_file = io.open("game/data/game.dat", "w")
 			io.output(score_file)
 			io.write(highScore)
 			io.close(score_file)

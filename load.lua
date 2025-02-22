@@ -1,5 +1,5 @@
 function loadHighScore ()
-	score_file = io.open("game/data/hs.dat", "r")
+	score_file = io.open("game/data/game.dat", "r")
     io.input(score_file)
     highScore = tonumber(io.read())
     io.close(score_file)
@@ -11,7 +11,7 @@ function loadPlayerData (player)
     player.speed = 500
     player.width = 126
     player.height = 113
-    player.sprite = love.graphics.newImage("game/data/viking.png")
+    player.sprite = love.graphics.newImage("game/png/viking.png")
     player.lives = 5
     player.iframeTimer = 0
     player.dmgOffsetX = 0
@@ -21,13 +21,13 @@ function loadPlayerData (player)
 end
 
 function loadSounds ()
-	startSound = love.audio.newSource("game/data/start.wav", "static")
-    deathSound = love.audio.newSource("game/data/death.wav", "static")
-    playerHitSound = love.audio.newSource("game/data/phit.wav", "static")
-    enemyHitSound = love.audio.newSource("game/data/ehit.wav", "static")
-    playerLaserSound = love.audio.newSource("game/data/plaser.wav", "static")
-    enemyLaserSound = love.audio.newSource("game/data/elaser.wav", "static")
-    music = love.audio.newSource("game/data/music.mp3", "stream")
+	startSound = love.audio.newSource("game/sound/start.wav", "static")
+    deathSound = love.audio.newSource("game/sound/death.wav", "static")
+    playerHitSound = love.audio.newSource("game/sound/phit.wav", "static")
+    enemyHitSound = love.audio.newSource("game/sound/ehit.wav", "static")
+    playerLaserSound = love.audio.newSource("game/sound/plaser.wav", "static")
+    enemyLaserSound = love.audio.newSource("game/sound/elaser.wav", "static")
+    music = love.audio.newSource("game/sound/music.mp3", "stream")
 
     playerHitSound:setVolume(0.2)
     enemyHitSound:setVolume(0.2)
@@ -37,19 +37,19 @@ function loadSounds ()
 end
 
 function loadUIGraphics ()
-	lBorder = love.graphics.newImage("game/data/lbar.png")
-    rBorder = love.graphics.newImage("game/data/rbar.png")
+	lBorder = love.graphics.newImage("game/png/lbar.png")
+    rBorder = love.graphics.newImage("game/png/rbar.png")
 	borderSize = 66
 	
     threatBarSize = 0
     ltBar = love.graphics.newQuad(0, 0, 0, 0, lBorder)
     rtBar = love.graphics.newQuad(0, 0, 0, 0, rBorder)
 
-    hbar = love.graphics.newImage("game/data/hbar5.png")
-    p2bar = love.graphics.newImage("game/data/p2.png")
+    hbar = love.graphics.newImage("game/png/hbar5.png")
+    p2bar = love.graphics.newImage("game/png/p2.png")
 
-    menu = love.graphics.newImage("game/data/menu.png")
-    gameOverScreen = love.graphics.newImage("game/data/gameover.jpg")
+    menu = love.graphics.newImage("game/png/menu.png")
+    gameOverScreen = love.graphics.newImage("game/png/gameover.png")
 end
 
 function loadStarfield ()
