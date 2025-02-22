@@ -43,11 +43,14 @@ function drawStars()
 end
 
 function drawUI ()
+	
+	local borderWidth, borderHeight = rBorder:getDimensions()
+	local p2barWidth, p2barHeight = p2bar:getDimensions()
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw(lBorder)
-	love.graphics.draw(rBorder, love.graphics.getWidth() - borderSize, 0)
-	love.graphics.draw(hbar, borderSize, love.graphics.getHeight() - 66)
-	love.graphics.draw(p2bar, 618, 534)
+	love.graphics.draw(lBorder,0,0,0,1,love.graphics.getHeight()/borderHeight)
+	love.graphics.draw(rBorder, love.graphics.getWidth() - borderSize, 0, 0, 1, love.graphics.getHeight()/borderHeight)
+	love.graphics.draw(hbar, borderSize, love.graphics.getHeight() - borderSize)
+	love.graphics.draw(p2bar,love.graphics.getWidth() - borderSize - p2barWidth, love.graphics.getHeight() - borderSize)
 	love.graphics.setColor(255,0,0)
 	love.graphics.draw(lBorder, ltBar, 0, 0)
 	love.graphics.draw(rBorder, rtBar, love.graphics.getWidth() - borderSize, 0)
@@ -56,8 +59,8 @@ end
 function drawGameOver ()
 	love.graphics.setColor(255,255,255)
 	love.graphics.draw(gameOverScreen)
-	love.graphics.print("Your Score: " .. score, 160, 450, 0, 3, 3)
-	love.graphics.print("High Score: " .. highScore, 160, 500, 0, 3, 3)
+	love.graphics.print("Your Score: " .. score, 160, 450, 0)
+	love.graphics.print("High Score: " .. highScore, 160, 500, 0)
 end
 
 function drawStartScreen ()

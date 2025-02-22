@@ -20,6 +20,11 @@ function processInput (dt)
         player.x = player.x + (player.speed * dt)
     end
 
+	--Quit
+    if love.keyboard.isDown("escape") then
+        os.exit()
+    end
+
 	--Movement(Gamepad)
 	if joystick then 
 		if not (joystick:getGamepadAxis("lefty") == 0) then

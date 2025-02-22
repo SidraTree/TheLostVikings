@@ -12,6 +12,10 @@ function love.load(args, unfilteredArgs)
     love.window.setTitle("The Lost Vikings VI")
 	icon = love.image.newImageData("game/png/olaf.png")
 	love.window.setIcon(icon)
+	love.window.setFullscreen(true)
+	love.window.setFullscreen(true,"exclusive")
+	
+	font = love.graphics.setNewFont(40)
 	
     local joysticks = love.joystick.getJoysticks()
     joystick = joysticks[1]
