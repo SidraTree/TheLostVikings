@@ -3,47 +3,38 @@
 --Lost Vikings VI                                                  
 --[[---------------------------------------------------------------------------]]
 --[[---------------------------------------------------------------------------]]
-require "draw"
-require "load"
-require "update"
+require "bullets"
+require "enemy"
+require "files"
+require "input"
+require "player"
+require "starfield"
+require "ui"
 
 function love.load(args, unfilteredArgs)
-
     love.window.setTitle("The Lost Vikings VI")
 	icon = love.image.newImageData("game/png/olaf.png")
 	love.window.setIcon(icon)
-	love.window.setFullscreen(true)
-	love.window.setFullscreen(true,"exclusive")
 	
-	font = love.graphics.setNewFont(40)
-	
-    local joysticks = love.joystick.getJoysticks()
-    joystick = joysticks[1]
-	
-	loadHighScore()
-	loadSounds()
-	loadUIGraphics()
-	loadStarfield()
+	gameOver = false
+	gameStart = false
+	threatLevel = 0
 	
     player = {}
+	horde = {}
 	loadPlayerData(player)
-
-    enemyDebris = love.graphics.newImage("game/png/eDmg.png")
-    playerDebris = love.graphics.newImage("game/png/pDmg.png")
-
-    gameOver = false
-	gameStart = false
+	loadEnemyData ()
 	
-    bulletQueue = {}
-    horde = {}
-    debris = {}
+	--bullets
     hordeBullets = {}
+    bulletQueue = {}
 	
-    spawnRate = 1
-    spawnLevel = 3
-	spawntimer = 0;
-    threatLevel = 0
-
+	loadGame()
+	loadInputConfig ()
+	loadSounds()
+	loadUI()
+	loadStarfield()
+	
 end
 
 function love.update(dt)
@@ -55,7 +46,7 @@ function love.update(dt)
         processEnemyBullets(dt)
         updateHorde(dt)
         processInput(dt)
-        updateStars(dt)
+        updateStarfield(dt)
 		updateThreatBar()
 		checkPlayerHealth(dt)
 
@@ -78,7 +69,7 @@ end
 
 function love.draw() 
     if gameStart == true then
-        drawStars()
+        drawStarfield()
         drawPlayer()
         drawHorde()
         drawEnemyBullets()
