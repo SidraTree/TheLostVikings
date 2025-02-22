@@ -1,0 +1,24 @@
+improvements
+-Better place for debris mangement
+-More cohesive threat bar management
+-cleanup checkPlayerHealth function
+
+2 player
+- more robust input mapping
+
+menus
+-options menu
+-pause menu
+
+bullets
+-sprites
+-collision
+-bullet table cleanup
+-Rework player shooting
+
+enemy
+-rework
+-horde table cleanup
+
+powerup
+-tbd

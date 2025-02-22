@@ -21,13 +21,12 @@ function loadUI ()
 end
 
 function updateThreatBar()
-        threatBarSize = ((love.graphics.getHeight()/100) * threatLevel)
-        ltBar = love.graphics.newQuad(0, 0, borderSize, threatBarSize, lBorder)
-        rtBar = love.graphics.newQuad(0, 0, borderSize, threatBarSize, rBorder)
+	threatBarSize = ((love.graphics.getHeight()/100) * threatLevel)
+	ltBar = love.graphics.newQuad(0, 0, borderSize, threatBarSize, lBorder)
+	rtBar = love.graphics.newQuad(0, 0, borderSize, threatBarSize, rBorder)
 end
 
 function drawUI ()
-	
 	local borderWidth, borderHeight = rBorder:getDimensions()
 	local p2barWidth, p2barHeight = p2bar:getDimensions()
 	love.graphics.setColor(255,255,255)
