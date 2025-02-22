@@ -38,7 +38,7 @@ function checkPlayerHealth (dt)
 		if score > highScore then
 			highScore = score
 		end
-		saveGame()
+		saveConfig()
 		love.load()
 		gameOver = true
 		deathSound:play()

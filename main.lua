@@ -4,10 +4,11 @@
 --[[---------------------------------------------------------------------------]]
 --[[---------------------------------------------------------------------------]]
 require "bullets"
+require "config"
 require "enemy"
-require "files"
 require "input"
 require "player"
+require "sounds"
 require "starfield"
 require "ui"
 
@@ -29,7 +30,7 @@ function love.load(args, unfilteredArgs)
     hordeBullets = {}
     bulletQueue = {}
 	
-	loadGame()
+	loadConfig()
 	loadInputConfig ()
 	loadSounds()
 	loadUI()
