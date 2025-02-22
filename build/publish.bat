@@ -2,7 +2,8 @@
 mkdir .\LostVikingsVI
 mkdir .\LostVikingsVI\game
 copy /b .\love\love.exe + .\Vikings.love .\LostVikingsVI\LostVikingsVI.exe
-copy ...\main.lua .\LostVikingsVI\main.lua
+copy ..\*.lua .\LostVikingsVI\.
 copy .\love\*.dll .\LostVikingsVI\.
 xcopy ..\game /e /y .\LostVikingsVI\game
 7za a -tzip LostVikingsVI.zip .\LostVikingsVI
+del Vikings.love
