@@ -13,22 +13,36 @@ require "starfield"
 require "ui"
 
 function love.load(args, unfilteredArgs)
-    love.window.setTitle("The Lost Vikings VI")
+	love.window.setTitle("The Lost Vikings VI")
 	icon = love.image.newImageData("game/png/olaf.png")
 	love.window.setIcon(icon)
 	
-	gameOver = false
+	if not setRes then
+		setRes = true
+		love.window.setMode(1280,720)
+		gameOver = false
+	end
+	
 	gameStart = false
-	threatLevel = 0
+	
+	isTwoPlayerMode = true
 	
     player = {}
-	horde = {}
 	loadPlayerData(player)
+	if isTwoPlayerMode then
+		playerTwo = {}
+		loadPlayerData(playerTwo)
+		playerTwo.x = 400
+	end
+	
+	horde = {}
 	loadEnemyData ()
 	
 	--bullets
     hordeBullets = {}
     bulletQueue = {}
+	
+	debris = {}
 	
 	loadConfig()
 	loadInputConfig ()
@@ -49,7 +63,8 @@ function love.update(dt)
         processInput(dt)
         updateStarfield(dt)
 		updateThreatBar()
-		checkPlayerHealth(dt)
+		checkGameOver(player, dt)
+		if isTwoPlayerMode then checkGameOver(playerTwo, dt) end
 
     elseif love.keyboard.isDown("return") then 
         startSound:play()
@@ -71,7 +86,8 @@ end
 function love.draw() 
     if gameStart == true then
         drawStarfield()
-        drawPlayer()
+        drawPlayer(player)
+		if isTwoPlayerMode then drawPlayer(playerTwo) end
         drawHorde()
         drawEnemyBullets()
         drawBullets()
@@ -83,4 +99,19 @@ function love.draw()
             drawStartScreen()
         end
     end
+end
+
+--------------------------------------------------------------------------
+
+function checkGameOver (player, dt)
+	player.iframeTimer = player.iframeTimer - dt
+	if (player.lives < 0) or (threatLevel >= 100) then
+		if score > highScore then
+			highScore = score
+		end
+		deathSound:play()
+		saveConfig()
+		gameOver = true
+		love.load()
+	end
 end

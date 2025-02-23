@@ -20,25 +20,29 @@ function processPlayerBullets(dt)
 end
 
 function processEnemyBullets(dt)
-    for k,v in pairs(hordeBullets) do
-        v.y = v.y + (v.speed * dt)
-
-            if (v.x > player.x - v.size) and (v.x < (player.x + player.width + v.size)) and
-                (v.y > player.y - v.size + 40) and (v.y < (player.y + (player.height/2) + v.size)) then
-                    if player.iframeTimer <= 0 then
-                        player.lives = player.lives - 1
-                        playerHitSound:play()
-                        if player.lives >= 0 then 
-                            hbar = love.graphics.newImage("game/png/hbar" .. player.lives ..".png") 
-                        end
-                        player.dmgOffsetX = v.x - player.x - 50
-                        player.dmgOffsetY = v.y - player.y - 30
-                        player.iframeTimer =  1
-                        v.alive = false
-                        v.x = -500 --yeet until I can dispose properly
-                    end
-            end
+    for k,bullet in pairs(hordeBullets) do
+        bullet.y = bullet.y + (bullet.speed * dt)
+			checkPlayerCollisions (player, bullet)
+			if isTwoPlayerMode then checkPlayerCollisions (playerTwo, bullet) end
     end
+end
+
+function checkPlayerCollisions (player, bullet)
+	if (bullet.x > player.x - bullet.size) and (bullet.x < (player.x + player.width + bullet.size)) and
+		(bullet.y > player.y - bullet.size + 40) and (bullet.y < (player.y + (player.height/2) + bullet.size)) then
+			if player.iframeTimer <= 0 then
+				player.lives = player.lives - 1
+				playerHitSound:play()
+				if player.lives >= 0 then 
+					hbar = love.graphics.newImage("game/png/hbar" .. player.lives ..".png") 
+				end
+				player.dmgOffsetX = bullet.x - player.x - 50
+				player.dmgOffsetY = bullet.y - player.y - 30
+				player.iframeTimer =  1
+				bullet.alive = false
+				bullet.x = -500 --yeet until I can dispose properly
+			end
+	end	
 end
 
 function drawBullets()

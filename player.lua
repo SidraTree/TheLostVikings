@@ -1,5 +1,5 @@
 function loadPlayerData (player)
-    player.x = 400
+    player.x = 800
     player.y = 300
     player.speed = 500
     player.width = 126
@@ -11,36 +11,24 @@ function loadPlayerData (player)
     player.dmgOffsetY = 0
     player.rof = 0.2
     player.fireTimer = 0
+	player.debris = love.graphics.newImage("game/png/pDmg.png")
 end
 
-function drawPlayer()
+function drawPlayer(player)
     love.graphics.draw(player.sprite, player.x, player.y)
 
     if (player.iframeTimer > 0) then
-        love.graphics.draw(playerDebris, (player.x + player.dmgOffsetX), (player.y + player.dmgOffsetY))
+        love.graphics.draw(player.debris, (player.x + player.dmgOffsetX), (player.y + player.dmgOffsetY))
     end
 
 end
 
-function shoot (dt)
+function shoot (player, dt)
 	player.fireTimer = player.fireTimer + dt
 	if player.fireTimer > player.rof then
 		player.fireTimer = player.fireTimer - player.rof
 		playerLaserSound:play()
 		bullet = {x = (player.x + 65), y = (player.y - 5), size = 10, speed = 450}
 		table.insert(bulletQueue,bullet)
-	end
-end
-
-function checkPlayerHealth (dt)
-	player.iframeTimer = player.iframeTimer - dt
-	if (player.lives < 0) or (threatLevel >= 100) then
-		if score > highScore then
-			highScore = score
-		end
-		saveConfig()
-		love.load()
-		gameOver = true
-		deathSound:play()
 	end
 end

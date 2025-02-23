@@ -5,10 +5,6 @@ function loadUI ()
 		
 	font = love.graphics.setNewFont(40)
 	
-	debris = {}
-	enemyDebris = love.graphics.newImage("game/png/eDmg.png")
-    playerDebris = love.graphics.newImage("game/png/pDmg.png")
-	
     threatBarSize = 0
     ltBar = love.graphics.newQuad(0, 0, 0, 0, lBorder)
     rtBar = love.graphics.newQuad(0, 0, 0, 0, rBorder)

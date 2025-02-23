@@ -1,24 +1,31 @@
-improvements
--Better place for debris mangement
--More cohesive threat bar management
--cleanup checkPlayerHealth function
+THE LOST VIKINGS VI
 
-2 player
-- more robust input mapping
+FEATURE: Two player mode
+- rig 2 player health (and update p1 health bar)
+- More robust input mapping
+- Joystick support for player two
+- different appearence for player two
 
-menus
--options menu
--pause menu
+FEATURE: Projectile rework
+- Better collision detection
+- Bullet table cleanup
+- Rework how player shoots
+- Add sprites for projectiles
 
-bullets
--sprites
--collision
--bullet table cleanup
--Rework player shooting
+FEATURE: Menus!!!
+- Fix gameover menu
+- Fix start screen
+- Add "single/two player" menu option
+- Options menu (fullscreen, controls)
+- Pause menu
 
-enemy
--rework
--horde table cleanup
+FEATURE: Enemy Rework
+- Enemy spawn cleanup
+- Horde table cleanup
+- New enemy behavior
+- More enemy types
 
-powerup
--tbd
+FEATURE: Powerups
+
+General Improvements:
+- placement of debris when player is hit

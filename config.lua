@@ -11,6 +11,6 @@ function loadConfig ()
     io.input(score_file)
     highScore = tonumber(io.read())
 	if io.read() == "fullscreen" then isFullscreen = true else isFullscreen = false end
-	love.window.setFullscreen(isFullscreen)
+	love.window.setFullscreen(isFullscreen, "exclusive")
     io.close(score_file)
 end

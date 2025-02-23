@@ -2,6 +2,8 @@ function loadEnemyData ()
 	spawnRate = 1
     spawnLevel = 3
 	spawntimer = 0
+	threatLevel = 0
+	enemyDebris = love.graphics.newImage("game/png/eDmg.png")
 end
 
 function spawnEnemy(type, x, y)
